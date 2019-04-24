@@ -104,7 +104,7 @@ def response_path(path):
 
     # If the path points to a directoty eg: webroot/images
     elif os.path.isdir(path):
-        content = " ".join(os.listdir(path)).encode()
+        content = "\n".join(os.listdir(path)).encode()
         mime_type = b"text/plain"
 
     # If the path points to a non_existing eg: webroot/asdfoo.html
@@ -136,7 +136,6 @@ def server(log_buffer=sys.stderr):
 
                     if '\r\n\r\n' in request:
                         break
-
 
                 print("Request received:\n{}\n\n".format(request))
 
