@@ -3,7 +3,6 @@ import sys
 import socket
 import traceback
 import mimetypes
-# import requests as req
 
 
 def response_ok(body, mimetype):
@@ -115,11 +114,6 @@ def response_path(path):
     # IF the path points to a non_existing eg: webroot/asdfoo.html
     else:
         raise NameError
-
-    # return content, mime_type
-    #
-    # content = b"not implemented"
-    # mime_type = b"not implemented"
 
     return content, mime_type
 
