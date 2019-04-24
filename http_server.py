@@ -43,7 +43,6 @@ def response_method_not_allowed():
 def response_not_found():
     """Returns a 404 response Not Found """
 
-
     return b"\r\n".join([
         b"HTTP/1.1 404 Request Not Found response",
         b"",
@@ -95,23 +94,20 @@ def response_path(path):
     """
 
     # path = "webroot" + path
-    # path was "/a_web_page.html"
     path = os.path.join("webroot", path.strip('/'))
 
-    # now path is "webroot/a_web_page.html"
-
-    # IF the path points to a file eg: webroot/a_web_page.html
+    # If the path points to a file eg: webroot/a_web_page.html
     if os.path.isfile(path):
         with open(path, "rb") as f:
             content = f.read()
         mime_type = mimetypes.guess_type(path)[0].encode()
 
-    # IF the path points to a directoty eg: webroot/images
+    # If the path points to a directoty eg: webroot/images
     elif os.path.isdir(path):
         content = " ".join(os.listdir(path)).encode()
         mime_type = b"text/plain"
 
-    # IF the path points to a non_existing eg: webroot/asdfoo.html
+    # If the path points to a non_existing eg: webroot/asdfoo.html
     else:
         raise NameError
 
